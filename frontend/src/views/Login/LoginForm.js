@@ -77,8 +77,9 @@ export const LoginForm = ({ className }) => {
               }
           )
           .then((response) => {
-            cookies.set('token', response.data.token.accessToken , { expires: response.data.token.expiresIn , path: window.location.hostname })
-            dispatch(login(formState.values.email, formState.values.password));
+            console.log(response.data);
+            cookies.set('token', response.data.token.accessToken , { expires: response.data.expiresIn , path: window.location.hostname })
+            dispatch(login(response.data.user));
             // history.push('/');
           })
           .catch((err) => console.log(err))

@@ -1,10 +1,9 @@
 import axios from 'axios';
 import cookie from 'js-cookie';
-console.log(process.env)
 // Next we make an 'instance' of it
 const instance = axios.create({
   // .. where we make our configurations
-  baseURL: process.env.BACKEND_BASE_URL || "http://localhost:3000",
+  baseURL: process.env.REACT_APP_GA_MEASUREMENT_ID_URL || "http://localhost:3000",
 });
 // Where you would set stuff like your 'Authorization' header, etc ...
 const token = cookie.get('token');

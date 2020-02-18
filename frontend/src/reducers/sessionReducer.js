@@ -2,6 +2,7 @@ import * as actionTypes from 'src/actions';
 
 const initialState = {
   loggedIn: true,
+  user_login: [],
   user: {
     first_name: 'Shen',
     last_name: 'Zhi',
@@ -19,7 +20,12 @@ const sessionReducer = (state = initialState, action) => {
         ...initialState
       };
     }
-
+    case actionTypes.INFOMATION_LOGIN: {
+      return {
+        ...state,
+        user_login: action.data
+      };
+    }
     case actionTypes.SESSION_LOGOUT: {
       return {
         ...state,
