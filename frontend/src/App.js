@@ -22,6 +22,8 @@ import './mixins/prismjs';
 import './mock';
 import './assets/scss/main.scss';
 
+require('dotenv').config();
+
 const history = createBrowserHistory();
 const store = configureStore();
 

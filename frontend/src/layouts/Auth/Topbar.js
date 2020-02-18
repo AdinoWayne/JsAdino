@@ -18,6 +18,7 @@ function Topbar({ className, ...rest }) {
     <AppBar
       {...rest}
       className={clsx(classes.root, className)}
+      position="sticky"
       color="primary"
     >
       <Toolbar>

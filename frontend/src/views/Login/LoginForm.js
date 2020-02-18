@@ -1,13 +1,15 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
+import http from '../../utils/http';
 import validate from 'validate.js';
+import cookies from 'js-cookie';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
 import { Button, TextField } from '@material-ui/core';
-import { login } from 'src/actions';
+import { login, loginAction } from 'src/actions';
 
 const schema = {
   email: {
@@ -36,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function LoginForm({ className, ...rest }) {
+export const LoginForm = ({ className }) => {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -68,8 +70,18 @@ function LoginForm({ className, ...rest }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // dispatch(login());
-    history.push('/');
+    http.post('/v1/auth/login',
+              {
+                  'email': formState.values.email,
+                  'password': formState.values.password
+              }
+          )
+          .then((response) => {
+            cookies.set('token', response.data.token.accessToken , { expires: response.data.token.expiresIn , path: window.location.hostname })
+            dispatch(login(formState.values.email, formState.values.password));
+            // history.push('/');
+          })
+          .catch((err) => console.log(err))
   };
 
   const hasError = (field) => (!!(formState.touched[field] && formState.errors[field]));
@@ -86,7 +98,7 @@ function LoginForm({ className, ...rest }) {
 
   return (
     <form
-      {...rest}
+      // {...rest}
       className={clsx(classes.root, className)}
       onSubmit={handleSubmit}
     >
@@ -129,8 +141,16 @@ function LoginForm({ className, ...rest }) {
   );
 }
 
+const mapStateToProps = (state) => ({
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    login: (username, password) => dispatch(loginAction(username, password))
+
+});
+
 LoginForm.propTypes = {
   className: PropTypes.string
 };
 
-export default LoginForm;
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

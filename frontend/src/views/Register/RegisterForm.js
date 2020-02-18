@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
 import validate from 'validate.js';
 import clsx from 'clsx';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import {
@@ -101,7 +102,16 @@ function RegisterForm({ className, ...rest }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    history.push('/');
+    axios.post('http://localhost:3000/v1/auth/register',
+              {
+                  'email': formState.values.email,
+                  'password': formState.values.password
+              }
+          )
+          .then((response) => {
+            history.push('/');
+        })
+        .catch((err) => console.log(err))
   };
 
   const hasError = (field) => !!(formState.touched[field] && formState.errors[field]);

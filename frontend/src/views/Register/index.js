@@ -4,11 +4,9 @@ import { makeStyles } from '@material-ui/styles';
 import {
   Card,
   CardContent,
-  CardMedia,
   Typography,
   Divider,
-  Link,
-  Avatar
+  Link
 } from '@material-ui/core';
 import PersonAddIcon from '@material-ui/icons/PersonAddOutlined';
 import gradients from 'src/utils/gradients';
@@ -25,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     width: theme.breakpoints.values.md,
-    maxWidth: '100%',
+    maxWidth: 500,
     overflow: 'visible',
     display: 'flex',
     position: 'relative',
@@ -110,39 +108,6 @@ function Register() {
             Have an account?
           </Link>
         </CardContent>
-        <CardMedia
-          className={classes.media}
-          image="/images/auth.png"
-          title="Cover"
-        >
-          <Typography
-            color="inherit"
-            variant="subtitle1"
-          >
-            Hella narvwhal Cosby sweater McSweeney&apos;s, salvia kitsch before they sold out High Life.
-          </Typography>
-          <div className={classes.person}>
-            <Avatar
-              alt="Person"
-              className={classes.avatar}
-              src="/images/avatars/avatar_2.png"
-            />
-            <div>
-              <Typography
-                color="inherit"
-                variant="body1"
-              >
-                Ekaterina Tankova
-              </Typography>
-              <Typography
-                color="inherit"
-                variant="body2"
-              >
-                Manager at inVision
-              </Typography>
-            </div>
-          </div>
-        </CardMedia>
       </Card>
     </Page>
   );

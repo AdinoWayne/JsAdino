@@ -8,3 +8,13 @@ export const login = () => (dispatch) => dispatch({
 export const logout = () => (dispatch) => dispatch({
   type: SESSION_LOGOUT
 });
+
+export const loginAction = (username,password) => {
+  return {
+      type: SESSION_LOGIN,
+      payload: {
+          name: username,
+          pass: password
+      }
+  }
+}
