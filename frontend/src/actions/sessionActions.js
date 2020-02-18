@@ -13,6 +13,6 @@ export const logout = () => (dispatch) => dispatch({
 export const loginAction = (dispatch) => {
   return {
       type: INFOMATION_LOGIN,
-      dispatch
+      data: dispatch,
   }
 }

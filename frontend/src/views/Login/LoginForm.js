@@ -77,9 +77,9 @@ export const LoginForm = ({ className }) => {
               }
           )
           .then((response) => {
-            console.log(response.data);
             cookies.set('token', response.data.token.accessToken , { expires: response.data.expiresIn , path: window.location.hostname })
-            dispatch(login(response.data.user));
+            dispatch(login());
+            dispatch(loginAction(response.data.user));
             // history.push('/');
           })
           .catch((err) => console.log(err))
@@ -146,8 +146,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    login: (username, password) => dispatch(loginAction(username, password))
-
 });
 
 LoginForm.propTypes = {
