@@ -214,6 +214,11 @@ export default [
         component: lazy(() => import('src/views/ProjectList'))
       },
       {
+        path: '/zone/:id',
+        exact: true,
+        component: lazy(() => import('src/html/zone'))
+      },
+      {
         path: '/settings',
         exact: true,
         component: lazy(() => import('src/views/Settings'))

@@ -15,11 +15,6 @@ const initialState = {
 
 const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SESSION_LOGIN: {
-      return {
-        ...initialState
-      };
-    }
     case actionTypes.INFOMATION_LOGIN: {
       return {
         ...state,

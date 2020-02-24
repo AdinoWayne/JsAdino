@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, connect } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
 import { Button, TextField } from '@material-ui/core';
-import { login, loginAction } from 'src/actions';
+import { loginAction } from 'src/actions';
 
 const schema = {
   email: {
@@ -78,9 +78,8 @@ export const LoginForm = ({ className }) => {
           )
           .then((response) => {
             cookies.set('token', response.data.token.accessToken , { expires: response.data.expiresIn , path: window.location.hostname })
-            dispatch(login());
             dispatch(loginAction(response.data.user));
-            // history.push('/');
+            history.push('/');
           })
           .catch((err) => console.log(err))
   };
