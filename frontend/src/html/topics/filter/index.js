@@ -135,17 +135,6 @@ function Filter({ className, ...rest }) {
         ))}
       </div>
       <Divider />
-      <div className={classes.selects}>
-        {selects.map((select) => (
-          <MultiSelect
-            key={select.label}
-            label={select.label}
-            onChange={handleMultiSelectChange}
-            options={select.options}
-            value={chips}
-          />
-        ))}
-      </div>
     </Card>
   );
 }

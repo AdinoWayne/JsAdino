@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function ZoneList() {
+function TopicsList() {
   const classes = useStyles();
 
   return (
@@ -39,4 +39,4 @@ function ZoneList() {
   );
 }
 
-export default ZoneList;
+export default TopicsList;
